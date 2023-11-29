@@ -42,11 +42,14 @@ class BaselineModel(pl.LightningModule):
         return self.model(x)
     
     def training_step(self, batch, batch_idx):
-        x, y = batch
-        y_logits = self.forward(x)
-        bs = x.shape[0]
-        loss = torch.nn.functional.cross_entropy(y_logits.view(-1, self.seq_len * self.n_chars),
-                                                 y.view(-1, self.seq_len * self.n_chars), reduction='sum') / bs
+        x, y = batch # y -> (bs, 2, 10)
+        y_logits = self.forward(x) # (bs, 2, 10)
+        bs = x.shape[0] # bs
+        # cross entropy expects logits: (bs, C), (bs,)
+        # in our case (bs, 2, 10) -> (bs * 2, 10)
+        _y = y.reshape(bs * self.seq_len, self.n_chars)
+        _y_logits = y_logits.reshape(bs * self.seq_len, self.n_chars)
+        loss = torch.nn.functional.cross_entropy(_y_logits, _y, reduction='sum') / bs
         
         self.log('train_loss', loss, on_epoch=True, prog_bar=True)
         
@@ -66,8 +69,10 @@ class BaselineModel(pl.LightningModule):
         x, y = batch
         y_logits = self.forward(x)
         bs = x.shape[0]
-        loss = torch.nn.functional.cross_entropy(y_logits.view(-1, self.seq_len * self.n_chars),
-                                                 y.view(-1, self.seq_len * self.n_chars), reduction='sum') / bs
+        
+        _y = y.reshape(bs * self.seq_len, self.n_chars)
+        _y_logits = y_logits.reshape(bs * self.seq_len, self.n_chars)
+        loss = torch.nn.functional.cross_entropy(_y_logits, _y, reduction='sum') / bs
         
         self.log('valid_loss', loss, prog_bar=True)
         
@@ -84,8 +89,8 @@ class BaselineModel(pl.LightningModule):
         return loss
     
     def __decode(self, y):
-        y = torch.argmax(y, dim=-1)
-        y = y.detach().cpu().numpy()
+        y = torch.argmax(y, dim=-1) # (bs, 2)
+        y = y.detach().cpu().numpy() # (bs, 2)
         decoded = [ ''.join([ self.idx2char[idx] for idx in sample ]) for sample in y ]
         return decoded
         

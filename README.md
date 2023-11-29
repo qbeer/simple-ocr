@@ -7,7 +7,7 @@ This repository contains code for training and evaluating a simple OCR system on
 | Image | Label |
 | --- | --- |
 | ![Image](./figures/60.jpg) | `60` |
-| ![Image](./figures/328.jpg) | `328` |
+| ![Image](./figures/328.jpg) | `789` |
 | ![Image](./figures/72103.jpg) | `72103` |
 
 We assume that the data is stored in the `data` directory. The data can be downloaded from [Kaggel](https://www.kaggle.com/competitions/physdl2023comp2/overview). The data should be extracted into the `data` directory. The directory structure should look like this:
@@ -35,7 +35,7 @@ data
 
 ### Task
 
-The task is to train a model that can recognize the text in the images. The model should take an image as input and output the corresponding text. The text is always a sequence of digits and the length of the sequence is between 1 and 5. The model should be trained and validated then evaluated on the held-out test set. The evaluation metric is the [word error rate](https://en.wikipedia.org/wiki/Word_error_rate) (WER).
+The task is to train a model that can recognize the text in the images. The model should take an image as input and output the corresponding text. The text is always a sequence of digits and the length of the sequence is between 2 and 5. The model should be trained and validated then evaluated on the held-out test set. The evaluation metric is the [word error rate](https://en.wikipedia.org/wiki/Word_error_rate) (WER).
 
 ### Resources
 
