@@ -62,3 +62,15 @@ You can also use the `environment.yml` file to create the environment.
 ```bash
 conda env create -f environment.yml
 ```
+
+## Training
+
+Training is done using the `train_baseline.ipbynb` notebook. See the notebook for details.
+
+## Logging
+
+The training logs are saved in the `logs` directory. The logs can be visualized using TensorBoard.
+
+```bash
+tensorboard --logdir logs
+```
