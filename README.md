@@ -1,6 +1,6 @@
 ## Simple OCR for synthetically generated text images
 
-This repository contains code for training and evaluating a simple OCR system on synthetically generated text images. The code is written in Python 3 and uses [PyTorch](https://pytorch.org/) as the deep learning framework. The data is hosted on [Kaggel](https://www.kaggle.com/competitions/physdl2023comp2/overview).
+This repository contains code for training and evaluating a simple OCR system on synthetically generated text images. The code is written in Python 3 and uses [PyTorch](https://pytorch.org/) as the deep learning framework. The data is hosted on [Kagge](https://www.kaggle.com/competitions/physdl2023comp2/overview).
 
 ### Example images
 
