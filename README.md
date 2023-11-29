@@ -7,7 +7,7 @@ This repository contains code for training and evaluating a simple OCR system on
 | Image | Label |
 | --- | --- |
 | ![Image](./figures/60.jpg) | `60` |
-| ![Image](./figures/328.jpg) | `789` |
+| ![Image](./figures/789.jpg) | `789` |
 | ![Image](./figures/72103.jpg) | `72103` |
 
 We assume that the data is stored in the `data` directory. The data can be downloaded from [Kaggel](https://www.kaggle.com/competitions/physdl2023comp2/overview). The data should be extracted into the `data` directory. The directory structure should look like this:
